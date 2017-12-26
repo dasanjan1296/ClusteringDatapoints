@@ -70,3 +70,34 @@
 ;(display step3)
 ;(newline)
 ; Part 3 over
+
+;Part 4 starts
+(define (intersection a b)                                                                             ;Function to calculate the intersection of two lists
+  (if (null? a)
+      '()
+      (if (comprise (car a) b)
+          (cons (car a) (intersection (cdr a) b))
+          (intersection (cdr a) b))))
+
+
+(define (present list1 value)                                                                           ;Function to check if a value is present in a list using recursion
+ (cond
+  [(empty? list1) false]
+  [(= (car list1) value) true]
+  [else (present (cdr list1) value)]))
+
+
+
+;(newline)
+(define step4p (build-list N (lambda (x) (filter (lambda (e) (not (null? e))) (build-list k (lambda (y) (if  (and
+                                                           ;(not(equal? (list-ref mypoints x) (list-ref mypoints (- (list-ref (list-ref step3 x) y) 1))))
+                                                           (present (list-ref step3 x) (list-ref (list-ref step3 x) y))
+                                                           (present (list-ref step3 (- (list-ref (list-ref step3 x) y) 1)) (+ x 1) ))
+                                    (list (list-ref (list-ref step3 x) y) (length (intersection (list-ref step3 x) (list-ref step3 (- (list-ref (list-ref step3 x) y) 1))))) (list))))))))
+ 
+                                                                                                        ; The penultimate step for step4 which perfomrs the algorithm 2.a and 2.b
+ 
+(define step4 (build-list N (lambda (x) (sort (list-ref step4p x) #:key cadr >))))                      ; Step4 is finally built after applying sorting using the key.
+;(display  step4)
+;(newline)
+
