@@ -62,4 +62,11 @@
 ;(newline)
 ; Part 2 over
 
+;Part 3 starts
 
+(define sort-mat (build-list N (lambda (x) (sort (list-ref step2 x) #:key cadr <))))                  ;Sorting the step2 list elements in ascending order to use them later in step3
+;(display sort-mat)
+(define step3 (build-list N (lambda (x) (sort (build-list k (lambda (y) (car (list-ref (drop-right (list-ref sort-mat x) (- N k)) y)))) <))))
+;(display step3)
+;(newline)
+; Part 3 over
