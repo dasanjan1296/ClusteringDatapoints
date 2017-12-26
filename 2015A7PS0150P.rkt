@@ -121,3 +121,46 @@
 ;(display step6)
 ;(newline)
 ;Step 6 over
+
+;Step 7 starts
+(define (boolwtthrs lst1 val)                                                        ;Function boolean weight threshold to check if an element is present in a list and if it is, it clears the threshold epsilon provided in the input
+  (cond
+    ((null? lst1) #f)
+    ((equal? val (first (first lst1))) (if (>= (cadar lst1) e) #t #f))
+    (else (boolwtthrs (cdr lst1) val))
+    ))
+
+(define (doubleindexcheck lst1 val1 val2)                                                          ;Function doubleindexcheck to check if val2 exists in the val1 index of the list passed
+  (cond
+    ((equal? val1 1) (boolwtthrs (car lst1) val2))
+    (else
+     (doubleindexcheck (cdr lst1) (- val1 1) val2))      
+    ))
+ 
+(define (dic-checker lst1 val1 val2)                                                              ;Function dic-dic-checker 
+  (cond
+    ((doubleindexcheck lst1 val2 val1) (doubleindexcheck lst1 val1 val2))
+   (else #f))
+ )
+
+(define (clusterpenult lst1 lst2 val1)                                                                   ;Penultimate step for clustering
+  (if (null? lst2) lst1 (clusterpenult (cond ((dic-checker step4 val1 (first lst2)) (append lst1 (list (first lst2)))) (else lst1)) (cdr lst2) val1)))
+
+(define (clusterfinal lst1 lst2 lst3 val)                                                          ;Final step for clustering
+  (cond
+    ((null? lst3) lst1)
+    ((null? lst2) lst1)
+    (else (clusterfinal (remove-duplicates (append lst1 (clusterpenult (list val) lst3 val) )) (cdr (clusterpenult (list val) lst3 val)) (remove* (clusterpenult (list val) lst3 val) lst3)
+    (cond
+        ((null? (cdr (clusterpenult (list val) lst3 val))) (list))
+      (else (car(cdr (clusterpenult (list val) lst3 val)))))))))
+
+(define (step7p lst1 lst2 val)
+  (if (null? lst2) lst1 
+      (step7p (append lst1  (list (append (list val) (list (sort (remove-duplicates (clusterfinal (list (car lst2)) (list (car lst2)) (cdr lst2) (car lst2))) <)))))
+        (remove* (clusterfinal (list (car lst2)) (list (car lst2))  (cdr lst2) (car lst2)) lst2 ) (+ val 1) )))
+
+(define step7 (step7p (list) step6 const))
+;(display step7)
+
+;Step 7 over
