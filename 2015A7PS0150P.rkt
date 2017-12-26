@@ -114,3 +114,10 @@
 (define step5 (build-list N (lambda (x) (length (list-ref cor-mat x)))))                                ; Step5 finally stores the length of each list obtained after applying algorithm 3.a
 ;(display step5)
 ;(newline)
+
+(define step6 (filter (lambda (e) (not (null? e))) (build-list N (lambda (x)  (if (> (list-ref step5 x) (- MinPts 1)) (+ x 1) (list))))))
+
+                                                                                                         ; Calculate the list of indices of the core-points.
+;(display step6)
+;(newline)
+;Step 6 over
