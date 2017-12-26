@@ -36,3 +36,30 @@
 ;(display step1)
 ;(newline)
 ; Part 1 over
+;Part 2 starts
+(define precision '6)
+
+(define (mysetprecision n p)
+  (if (= n +inf.0) +inf.0
+      (string->number (~r n #:precision p))
+  )
+) 
+
+(define (precision_util lst)
+  (if (null? lst) '()
+      (cons (list (car(car lst)) (mysetprecision (car(cdr(car lst))) precision))  (precision_util (cdr lst))))
+)
+
+(define (modify_precision lst)
+  (if (null? lst) '()
+  (cons (precision_util (car lst)) (modify_precision (cdr lst))))
+)
+
+(define mstep2 (build-list N (lambda (x)
+  (build-list N (lambda (y) (if (= x y) (list (+ y 1) +inf.0) (list (+ y 1) (euc-dist (list-ref mypoints x) (list-ref mypoints y)) )))))))
+(define step2 (modify_precision mstep2))
+;(display step2)
+;(newline)
+; Part 2 over
+
+
