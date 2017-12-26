@@ -164,3 +164,11 @@
 ;(display step7)
 
 ;Step 7 over
+
+(define (zero list1)                                                                                             ;Function to calculate the indices of all the zeroes present in a list
+  (filter (lambda (e) (not (null? e))) (build-list N (lambda (x) (if (equal? (list-ref list1 x) 0) (+ x 1) (list))))))
+
+(define step8(zero step5))
+
+;(display step8)
+;(newline)
