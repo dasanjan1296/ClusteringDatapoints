@@ -101,3 +101,16 @@
 ;(display  step4)
 ;(newline)
 
+(define cor-mat (build-list N (lambda (x) (filter (lambda (e) (not (null? e))) (build-list k (lambda (y) (if (and
+                                                           (> (length (intersection (list-ref step3 x) (list-ref step3 (- (list-ref (list-ref step3 x) y) 1)))) (- e 1))
+                                                           (present (list-ref step3 x) (list-ref (list-ref step3 x) y))
+                                                           (present (list-ref step3 (- (list-ref (list-ref step3 x) y) 1)) (+ x 1) )) 
+                                    (list (list-ref (list-ref step3 x) y) (length (intersection (list-ref step3 x) (list-ref step3 (- (list-ref (list-ref step3 x) y) 1))))) (list))))))))
+                                                                                                     
+                                                      ; Applying algorithm 3.a and passing the obtained list to cor-mat
+
+
+
+(define step5 (build-list N (lambda (x) (length (list-ref cor-mat x)))))                                ; Step5 finally stores the length of each list obtained after applying algorithm 3.a
+;(display step5)
+;(newline)
